@@ -3,6 +3,7 @@ import React from "react";
 import * as WebBrowser from "expo-web-browser";
 
 import {
+  Button,
   Image,
   Linking,
   StyleSheet,
@@ -26,6 +27,7 @@ function LoginScreen() {
         await startOAuthFlow();
 
       if (createdSessionId) {
+        console.log("Session created:", createdSessionId);
         setActive({ session: createdSessionId });
       } else {
         // Use signIn or signUp for next steps such as MFA
@@ -76,7 +78,7 @@ function LoginScreen() {
         </Text>
         {/* //버튼동작 */}
         <TouchableOpacity onPress={onPress} style={styles.button}>
-          구글 로그인
+          <Text style={styles.buttonText}>구글 로그인</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -111,13 +113,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: Colors.primary,
-    color: Colors.white,
-    textAlign: "center",
     justifyContent: "center",
-    fontSize: 16,
-    padding: 16,
-    display: "flex",
     borderRadius: 99,
     marginTop: 30,
+    padding: 16,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: Colors.white,
+    fontSize: 16,
   },
 });

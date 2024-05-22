@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, StatusBar } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
+import { ClerkProvider } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import LoginScreen from "./app/screen/LoginScreen";
 import { Colors } from "./constants/Colors";
@@ -52,9 +52,7 @@ export default function Page() {
       }
     >
       <View style={styles.container} onLayout={onLayoutRootView}>
-        <Text>
-          <LoginScreen />
-        </Text>
+        <LoginScreen />
         <StatusBar />
       </View>
     </ClerkProvider>
@@ -86,5 +84,16 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
+  },
+  logoImage: {
+    width: 100,
+    height: 40,
+    objectFit: "contain",
+  },
+  bgImage: {
+    width: "100%",
+    height: 240,
+    marginTop: 20,
+    objectFit: "cover",
   },
 });
