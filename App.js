@@ -5,6 +5,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
+import LoginScreen from "./app/screen/LoginScreen";
+import { Colors } from "./constants/Colors";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,7 +52,9 @@ export default function Page() {
       }
     >
       <View style={styles.container} onLayout={onLayoutRootView}>
-        <Text>짜잔</Text>
+        <Text>
+          <LoginScreen />
+        </Text>
         <StatusBar />
       </View>
     </ClerkProvider>
@@ -60,7 +64,7 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     paddingTop: 25,
   },
   titleContainer: {
