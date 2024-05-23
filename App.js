@@ -3,13 +3,14 @@ import { StyleSheet, View, Text, StatusBar } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
-import { ClerkProvider } from "@clerk/clerk-expo";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import * as Location from "expo-location";
 import LoginScreen from "./app/screen/LoginScreen";
 import { Colors } from "./constants/Colors";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigations from "./app/components/Navigations";
+import { UserLocationContext } from "./app/components/UserLocationContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -43,7 +44,7 @@ export default function Page() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      setLocation(location.coords);
       console.log("location:", location);
     })();
   }, []);
@@ -78,12 +79,14 @@ export default function Page() {
         "pk_test_c3RpcnJpbmctc2hyZXctMjUuY2xlcmsuYWNjb3VudHMuZGV2JA"
       }
     >
-      <View style={styles.container} onLayout={onLayoutRootView}>
-        <NavigationContainer>
-          <Navigations />
-        </NavigationContainer>
-        <StatusBar />
-      </View>
+      <UserLocationContext.Provider value={{ location, setLocation }}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
+          <NavigationContainer>
+            <Navigations />
+          </NavigationContainer>
+          <StatusBar />
+        </View>
+      </UserLocationContext.Provider>
     </ClerkProvider>
   );
 }
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
+    marginTop: 55,
   },
   titleContainer: {
     flexDirection: "row",

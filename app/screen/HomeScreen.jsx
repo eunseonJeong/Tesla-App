@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewStyle from "../../constants/MapViewstyle.json";
 import MapInput from "../components/MapInput";
+import { UserLocationContext } from "../components/UserLocationContext";
 
 function HomeScreen() {
+  const { location, setLocation } = useContext(UserLocationContext);
   return (
-    <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        provider={MapView.PROVIDER_GOOGLE}
-        customMapStyle={MapViewStyle}
-      />
-      <MapInput />
-    </View>
+    location?.latitude && (
+      <View style={styles.container}>
+        <MapInput />
+
+        <MapView
+          style={styles.map}
+          provider={MapView.PROVIDER_GOOGLE}
+          customMapStyle={MapViewStyle}
+          region={{
+            latitude: location?.latitude,
+            longitude: location?.longitude,
+            latitudeDelta: 0.0422,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      </View>
+    )
   );
 }
 
@@ -25,6 +36,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: "100%",
+    height: "94%",
   },
 });
