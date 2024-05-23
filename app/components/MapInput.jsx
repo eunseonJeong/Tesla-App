@@ -3,25 +3,25 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
-function MapInput() {
+function MapInput({ searchedLocation }) {
   return (
     <GooglePlacesAutocomplete
       minLength={2}
       placeholder="장소를 검색해보세요!"
       query={{
-        key: "API 키",
+        key: "AIzaSyCQy9x630YV2fAP_i5SaVPWp0fZDzXWnQg",
         language: "ko",
         components: "country:kr",
       }}
       keyboardShouldPersistTaps={"handled"}
-      fetchDetails={true}
+      fetchDetails={true} //디테일 검색 허용
       onPress={(data, details) => {
-        console.log(data, details);
-      }}
-      onFail={(error) => console.log(error)}
+        searchedLocation(details?.geometry?.location);
+      }} //검색버튼
+      onFail={(error) => console.log(error)} //실패시
       onNotFound={() => console.log("no results")}
-      keepResultsAfterBlur={true}
-      enablePoweredByContainer={false}
+      keepResultsAfterBlur={true} //검색 후 검색목록 지울지 결정
+      enablePoweredByContainer={false} //밑에 google 표시
       styles={styles.search}
     />
   );

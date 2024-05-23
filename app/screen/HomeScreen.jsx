@@ -13,8 +13,8 @@ function HomeScreen() {
       <View>
         <View style={styles.headerContainer}>
           <Header />
+          <MapInput searchedLocation={(location) => console.log(location)} />
         </View>
-        {/* <MapInput /> */}
 
         <MapView
           style={styles.map}
