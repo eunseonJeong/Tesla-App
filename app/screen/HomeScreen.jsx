@@ -4,13 +4,17 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewStyle from "../../constants/MapViewstyle.json";
 import MapInput from "../components/MapInput";
 import { UserLocationContext } from "../components/UserLocationContext";
+import Header from "../components/Header";
 
 function HomeScreen() {
   const { location, setLocation } = useContext(UserLocationContext);
   return (
     location?.latitude && (
-      <View style={styles.container}>
-        <MapInput />
+      <View>
+        <View style={styles.headerContainer}>
+          <Header />
+        </View>
+        {/* <MapInput /> */}
 
         <MapView
           style={styles.map}
@@ -38,11 +42,15 @@ function HomeScreen() {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  headerContainer: {
+    position: "absolute",
+    zIndex: 10,
+    padding: 10,
+    width: "100%",
+    paddingHorizontal: 10,
   },
   map: {
     width: "100%",
-    height: "94%",
+    height: "100%",
   },
 });

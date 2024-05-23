@@ -9,6 +9,8 @@ const primary = "#42E2B8";
 const blue = "#07004D";
 const gray = "#898989";
 const white = "#ffffff";
+const white_transp = "#ffffff87";
+
 const black = "#000000";
 
 export const Colors = {
@@ -22,5 +24,6 @@ export const Colors = {
   blue: blue,
   gray: gray,
   white: white,
+  white_transp: white_transp,
   black: black,
 };
