@@ -16,7 +16,7 @@ function Navigations() {
         component={HomeScreen}
         options={{
           tabBarLabel: "Search",
-          tabBarActiveBackgroundColor: Colors.primary,
+          tabBarActiveBackgroundColor: Colors.white,
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="search1" size={size} color={color} />
           ),
@@ -27,9 +27,9 @@ function Navigations() {
         component={ProfileScreen}
         options={{
           tabBarLabel: "Profile",
-          tabBarActiveBackgroundColor: Colors.primary,
+          tabBarActiveBackgroundColor: Colors.white,
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user" size={24} color="black" />
+            <FontAwesome name="user" size={size} color={color} />
           ),
         }}
       />
@@ -38,7 +38,7 @@ function Navigations() {
         component={FavoriteScreen}
         options={{
           tabBarLabel: "Favorite",
-          tabBarActiveBackgroundColor: Colors.primary,
+          tabBarActiveBackgroundColor: Colors.white,
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="heart" size={size} color={color} />
           ),

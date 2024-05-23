@@ -24,7 +24,12 @@
       "favicon": "./assets/images/tesla.png"
     },
     "plugins": [
-      "expo-secure-store"
+      [
+        "expo-secure-store",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow EV Station App to use your location."
+        }
+      ]
     ]
   }
 }

@@ -1,19 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapViewStyle from "../../constants/MapViewstyle.json";
+import MapInput from "../components/MapInput";
 
 function HomeScreen() {
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        provider={MapView.PROVIDER_GOOGLE}
+        customMapStyle={MapViewStyle}
       />
+      <MapInput />
     </View>
   );
 }

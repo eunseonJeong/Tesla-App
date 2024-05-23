@@ -2,9 +2,10 @@ import { StyleSheet, View, Text, StatusBar } from "react-native";
 
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ClerkProvider } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
+import * as Location from "expo-location";
 import LoginScreen from "./app/screen/LoginScreen";
 import { Colors } from "./constants/Colors";
 import { NavigationContainer } from "@react-navigation/native";
@@ -30,6 +31,30 @@ const tokenCache = {
 };
 
 export default function Page() {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log("location:", location);
+    })();
+  }, []);
+
+  let text = "Waiting..";
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
   const [fontLoaded] = useFonts({
     "outfit-regular": require("./assets/fonts/Outfit-Regular.ttf"),
     "outfit-bold": require("./assets/fonts/Outfit-Bold.ttf"),
@@ -54,7 +79,6 @@ export default function Page() {
       }
     >
       <View style={styles.container} onLayout={onLayoutRootView}>
-        <Text style={styles.titleContainer}>안녕하세요~</Text>
         <NavigationContainer>
           <Navigations />
         </NavigationContainer>
@@ -68,7 +92,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
-    margin: 25,
   },
   titleContainer: {
     flexDirection: "row",
