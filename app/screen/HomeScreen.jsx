@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { Image, StyleSheet, Text, View } from "react-native";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewStyle from "../../constants/MapViewstyle.json";
 import MapInput from "../components/MapInput";
 import { UserLocationContext } from "../components/UserLocationContext";
@@ -22,7 +22,14 @@ function HomeScreen() {
             latitudeDelta: 0.0422,
             longitudeDelta: 0.0421,
           }}
-        />
+        >
+          <Marker
+            coordinate={{
+              latitude: location?.latitude,
+              longitude: location?.longitude,
+            }}
+          />
+        </MapView>
       </View>
     )
   );
