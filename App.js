@@ -7,6 +7,8 @@ import { ClerkProvider } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import LoginScreen from "./app/screen/LoginScreen";
 import { Colors } from "./constants/Colors";
+import { NavigationContainer } from "@react-navigation/native";
+import Navigations from "./app/components/Navigations";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -52,7 +54,10 @@ export default function Page() {
       }
     >
       <View style={styles.container} onLayout={onLayoutRootView}>
-        <LoginScreen />
+        <Text style={styles.titleContainer}>안녕하세요~</Text>
+        <NavigationContainer>
+          <Navigations />
+        </NavigationContainer>
         <StatusBar />
       </View>
     </ClerkProvider>
@@ -63,12 +68,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
-    paddingTop: 25,
+    margin: 25,
   },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    margin: 20,
   },
   stepContainer: {
     gap: 8,

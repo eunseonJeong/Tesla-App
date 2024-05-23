@@ -11,6 +11,8 @@
   "dependencies": {
     "@clerk/clerk-expo": "^1.1.4",
     "@expo/metro-runtime": "~3.2.1",
+    "@expo/ngrok": "^4.1.0",
+    "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@types/react": "~18.2.79",
@@ -29,7 +31,8 @@
     "typescript": "~5.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/react-native": "^0.73.0"
   },
   "private": true
 }
